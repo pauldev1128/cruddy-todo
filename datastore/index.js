@@ -13,22 +13,15 @@ exports.create = (text, callback) => {
     var myPath = path.join(exports.dataDir, `${id}.txt`);
     fs.writeFile(myPath, text, (err) => {
       if (err) {
-        throw ('error writing counter');
+        callback(err);
       } else {
-        console.log(id);
-        callback(null, id)
+        callback(null, { id, text })
       }
     }
       // (err, {id, text}) => (callback(err, { id, text }))
   )
   })
 };
-// );
-//   // items[id] = text;
-//   // var path = './test/'+id+'.txt';
-//   // fs.writeFile(path, text, callback);
-//   // callback(null, { id, text });
-// }
 
 exports.readAll = (callback) => {
   var data = _.map(items, (text, id) => {
